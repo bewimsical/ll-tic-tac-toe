@@ -9,6 +9,10 @@ public class TicTacToe {
     // Constructor to initialize the game
     public TicTacToe() {
         this.board = new LinkedList();
+        for (int i = 1; i < 10; i++){
+           this.board.insertAtEnd("", i);
+
+        }
         this.currentPlayer = "X";  // 'X' starts the game
     }
 
@@ -39,11 +43,11 @@ public class TicTacToe {
                 if (!gameWon) {
                     switchPlayer();
                 }
-            } else {
+            }
+            else {
                 System.out.println("Invalid move! Try again.");
             }
         }
-
         board.displayBoard();
 
         if (gameWon) {
