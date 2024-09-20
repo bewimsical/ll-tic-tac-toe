@@ -29,31 +29,47 @@ public class TicTacToe {
     public void playGame() {
         Scanner scanner = new Scanner(System.in);
         boolean gameWon = false;
+        boolean playAgain = true;
+        while (playAgain) {
+            while (!board.isBoardFull() && !gameWon) {
+                board.displayBoard();
+                System.out.println("Player " + this.currentPlayer + ", enter your move (1-9): ");
+                int move = scanner.nextInt();
 
-        while (!board.isBoardFull() && !gameWon) {
-            board.displayBoard();
-            System.out.println("Player " + this.currentPlayer + ", enter your move (1-9): ");
-            int move = scanner.nextInt();
+                // Validate move and update board
+                if (move >= 1 && move <= 9 && board.getPositionValue(move).equals("")) {
+                    board.updatePosition(move, this.currentPlayer);
+                    gameWon = board.checkWinCondition();
 
-            // Validate move and update board
-            if (move >= 1 && move <= 9 && board.getPositionValue(move).equals("")) {
-                board.updatePosition(move, this.currentPlayer);
-                gameWon = board.checkWinCondition();
-
-                if (!gameWon) {
-                    switchPlayer();
+                    if (!gameWon) {
+                        switchPlayer();
+                    }
+                } else {
+                    System.out.println("Invalid move! Try again.");
                 }
             }
-            else {
-                System.out.println("Invalid move! Try again.");
-            }
-        }
-        board.displayBoard();
+            board.displayBoard();
 
-        if (gameWon) {
-            System.out.println("Player " + this.currentPlayer + " wins!");
-        } else {
-            System.out.println("It's a draw!");
+            if (gameWon) {
+                System.out.println("Player " + this.currentPlayer + " wins!");
+            } else {
+                System.out.println("It's a draw!");
+            }
+            boolean choosing = true;
+            while (choosing) {
+                System.out.println("Play Again Y/N");
+                String choice = scanner.next();
+                if (choice.equalsIgnoreCase("Y")) {
+                    board.resetBoard();
+                    gameWon = false;
+                    choosing = false;
+                } else if (choice.equalsIgnoreCase("N")) {
+                    playAgain = false;
+                    choosing = false;
+                } else {
+                    System.out.println("Invalid choice!");
+                }
+            }
         }
     }
 

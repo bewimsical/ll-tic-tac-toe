@@ -130,7 +130,7 @@ public class LinkedList {
         else{
             Node current = this.head;
             while (current.next != null){
-               current.data = null;
+               current.data = "";
                 current = current.next;
             }
         }
