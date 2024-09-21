@@ -58,19 +58,48 @@ public class LinkedList {
     // Method to display the Tic Tac Toe board
     public void displayBoard() {
         // TODO: To be implemented
-        System.out.print("-------------------------------\n" +
-                "|         |         |         |\n|");
+        String divider = "-------------------------------";
+        String rowTop = "|";
+        String rowMid = "|";
+        String rowBot = "|";
+        String xTop = " \\‾\\/‾/  |";
+        String xMid = "  )  (   |";
+        String xBot = " /_/\\_\\  |";
+        String oTop = "  /‾‾‾\\  |";
+        String oMid = " | ( ) | |";
+        String oBot = "  \\___/  |";
+        String blank = "         |";
         for (int i = 1; i < 10; i++){
-            String value = getPositionValue(i).equals("") ? ""+i : getPositionValue(i);
-            System.out.print("    "+value+"    |");
-            if (i == 3 || i == 6){
-                System.out.print("\n|         |         |         |\n" +
-                        "-------------------------------\n" +
-                        "|         |         |         |\n|");
+            if (i == 4 || i == 7 ){
+                System.out.println(divider);
+                System.out.println(rowTop);
+                System.out.println(rowMid);
+                System.out.println(rowBot);
+                rowTop = "|";
+                rowMid = "|";
+                rowBot = "|";
+            }
+            if (getPositionValue(i).equals("X")){
+                rowTop += xTop;
+                rowMid += xMid;
+                rowBot += xBot;
+            }
+            else if (getPositionValue(i).equals("O")){
+                rowTop += oTop;
+                rowMid += oMid;
+                rowBot += oBot;
+            }
+            else{
+                rowTop += blank;
+                rowMid += "    "+i+"    |";
+                rowBot += blank;
             }
         }
-        System.out.println("\n|         |         |         |\n" +
-                "-------------------------------");
+        System.out.println(divider);
+        System.out.println(rowTop);
+        System.out.println(rowMid);
+        System.out.println(rowBot);
+        System.out.println(divider);
     }
 
     // Method to check for a win
@@ -131,8 +160,9 @@ public class LinkedList {
             Node current = this.head;
             while (current.next != null){
                current.data = "";
-                current = current.next;
+               current = current.next;
             }
+            current.data = "";
         }
     }
 }
