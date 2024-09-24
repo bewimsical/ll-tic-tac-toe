@@ -148,6 +148,9 @@ public class LinkedList {
                 }
                 current = current.next;
             }
+            if (current.data.isEmpty()){
+                return false;
+            }
         }
         return true;
     }

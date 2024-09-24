@@ -1,6 +1,6 @@
 
 public class Node {
-    String data;  // Could be 'X', 'O', or empty
+    String data;  // Could be 'X', 'O', or ""
     int cellPosition; // could be numbers 1 - 9
     Node next; // A reference (pointer) to the next node.
 
